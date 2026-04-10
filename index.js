@@ -1,3 +1,11 @@
+/*Create a webpage for a bookstore that will display 
+all their books:
+- Update the existing title on the page
+- Add elements for every book in the catalog
+- List of books saved to an object
+- Use this object for DOM manipulation*/
+
+
 const bookStore = {
     name: 'Flatbooks Technical Books',
     books: [
@@ -45,3 +53,32 @@ const bookStore = {
 
 // Write your code here!
 
+const bookStoreTitle = document.querySelector("#header");
+
+bookStoreTitle.textContent = bookStore.name
+
+//step III
+const bookList = document.querySelector('#book-list');
+bookList.className = ".list ul"
+bookStore.books.forEach(book => {
+    //this is creating element for each book
+const bookContainer = document.createElement('li');
+const bookTitle = document.createElement("h3");
+const bookAuthor = document.createElement("p");
+const bookImage = document.createElement("img"); 
+    
+   //changing the element to match the book content
+    bookTitle.textContent = book.title;
+    bookContainer.className = ".list-li"
+    bookAuthor.textContent = book.author;
+    bookImage.src = book.imageUrl;
+    bookImage.alt = book.title
+    bookImage.className =".list-li img"
+//
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(bookImage);
+
+    bookList.append(bookContainer);
+
+})
